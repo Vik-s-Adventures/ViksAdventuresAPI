@@ -21,8 +21,9 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "performance", nullable = false)
-    private String performance;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "skill", nullable = false)
+    private Skill skill;
 
     @Column(name = "question_text", nullable = false)
     private String questionText;

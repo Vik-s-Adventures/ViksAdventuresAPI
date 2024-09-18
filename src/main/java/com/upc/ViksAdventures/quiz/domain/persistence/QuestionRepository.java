@@ -8,5 +8,5 @@ import java.util.List;
 @Repository
 public interface QuestionRepository {
     List<Question> findQuestionsByQuizId(Long quizId);
-    List<Question> findQuestionsByQuizIdAndPerformance(Long quizId, String performance);
+    List<Question> findQuestionsByQuizIdAndSkill(Long quizId, String skill);
 }
