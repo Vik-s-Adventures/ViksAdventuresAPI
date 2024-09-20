@@ -1,6 +1,8 @@
 package com.upc.ViksAdventures.quiz.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonGetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,8 +23,9 @@ public class Question {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "performance", nullable = false)
-    private String performance;
+    @Enumerated(EnumType.ORDINAL)
+    @Column(name = "skill", nullable = false)
+    private Skill skill;
 
     @Column(name = "question_text", nullable = false)
     private String questionText;
@@ -34,4 +37,14 @@ public class Question {
 
     @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AnswerOption> answerOptions = new ArrayList<>();
+
+    @JsonGetter("skill")
+    public String getSkillAsString() {
+        return skill.toString();
+    }
+
+    @JsonSetter("skill")
+    public void setSkillFromString(String skillName) {
+        this.skill = Skill.valueOf(skillName.toUpperCase());
+    }
 }

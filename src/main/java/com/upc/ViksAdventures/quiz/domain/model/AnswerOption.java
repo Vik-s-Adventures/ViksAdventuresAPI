@@ -21,8 +21,8 @@ public class AnswerOption {
     @Column(name = "answer_text", nullable = false)
     private String answerText;
 
-    @Column(name = "is_correct", nullable = false)
-    private boolean isCorrect;
+    @Column(name = "correct", nullable = false)
+    private boolean correct;
 
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false, foreignKey = @ForeignKey(name = "FK_QUESTION_ID"))

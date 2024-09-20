@@ -18,9 +18,6 @@ public class StudentResponse {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "time_taken", nullable = false)
-    private int timeTaken;
-
     @ManyToOne
     @JoinColumn(name = "quiz_result_id", nullable = false, foreignKey = @ForeignKey(name = "FK_QUIZ_RESULT_ID"))
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
