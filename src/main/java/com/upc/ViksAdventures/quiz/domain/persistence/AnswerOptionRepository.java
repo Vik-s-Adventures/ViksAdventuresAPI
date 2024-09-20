@@ -9,5 +9,5 @@ import java.util.List;
 @Repository
 public interface AnswerOptionRepository extends JpaRepository<AnswerOption, Long> {
     List<AnswerOption> findByQuestionId(Long questionId);
-    List<AnswerOption> findAnswerOptionByCorrect(Boolean isCorrect);
+    int countAnswerOptionByQuestionIdAndCorrect(Long questionId, boolean isCorrect);
 }

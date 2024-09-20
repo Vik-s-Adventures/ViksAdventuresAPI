@@ -9,6 +9,5 @@ public interface StudentResponseService {
     List<StudentResponse> getAll();
     StudentResponse getBydId(Long studentResponseId);
     StudentResponse create(StudentResponse studentResponse);
-    StudentResponse update(Long id, StudentResponse studentResponse);
     ResponseEntity<?> delete(Long studentResponseId);
 }
