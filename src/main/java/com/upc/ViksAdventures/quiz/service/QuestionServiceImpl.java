@@ -1,6 +1,7 @@
 package com.upc.ViksAdventures.quiz.service;
 
 import com.upc.ViksAdventures.quiz.domain.model.Question;
+import com.upc.ViksAdventures.quiz.domain.model.Skill;
 import com.upc.ViksAdventures.quiz.domain.persistence.QuestionRepository;
 import com.upc.ViksAdventures.quiz.domain.service.QuestionService;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
@@ -39,8 +40,8 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getQuestionsByQuizIdAndSkill(Long quizId, String skill){
-        return questionRepository.findQuestionByQuizIdAndSkill(quizId, skill);
+    public List<Question> getQuestionsByQuizIdAndSkill(Long quizId, Skill skill){
+        return questionRepository.findQuestionByQuizIdAndSkill(quizId,skill);
     }
 
     @Override

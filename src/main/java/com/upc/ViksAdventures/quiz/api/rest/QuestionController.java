@@ -1,6 +1,7 @@
 package com.upc.ViksAdventures.quiz.api.rest;
 
 import com.upc.ViksAdventures.quiz.domain.model.Question;
+import com.upc.ViksAdventures.quiz.domain.model.Skill;
 import com.upc.ViksAdventures.quiz.domain.service.QuestionService;
 import com.upc.ViksAdventures.quiz.mapping.QuestionMapper;
 import com.upc.ViksAdventures.quiz.resource.CreateQuestionResource;
@@ -37,8 +38,9 @@ public class QuestionController {
 
     // Obtener preguntas por quizId y skill
     @GetMapping("/quiz/{quizId}/skill/{skill}")
-    public List<QuestionResource> getQuestionsByQuizIdAndSkill(@PathVariable Long quizId, @PathVariable String skill) {
-        return mapper.toResourceList(questionService.getQuestionsByQuizIdAndSkill(quizId, skill));
+    public List<QuestionResource> getQuestionsByQuizIdAndSkill(@PathVariable Long quizId, @PathVariable int skill) {
+        Skill skillEnum = Skill.values()[skill];
+        return mapper.toResourceList(questionService.getQuestionsByQuizIdAndSkill(quizId, skillEnum));
     }
 
     // Obtener una pregunta por su id

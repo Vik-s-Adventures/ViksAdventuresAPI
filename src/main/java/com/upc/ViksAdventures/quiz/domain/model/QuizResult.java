@@ -30,7 +30,8 @@ public class QuizResult {
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "quiz_id", nullable = false, foreignKey = @ForeignKey(name = "FK_QUIZ_ID"))
+    @JoinColumn(name="quiz_id", nullable = false, foreignKey = @ForeignKey(name="FK_QUIZ_RESULT_QUIZ_ID"))
+    //@JoinColumn(name = "quiz_id", nullable = false, foreignKey = @ForeignKey(name = "FK_QUIZ_ID"))
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private Quiz quiz;
 

@@ -1,6 +1,5 @@
 package com.upc.ViksAdventures.quiz.resource;
 
-import com.upc.ViksAdventures.quiz.domain.model.Skill;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -17,7 +16,7 @@ public class UpdateQuestionResource {
 
     @NotNull
     @NotBlank
-    private Skill skill;
+    private int skill;
 
     @NotNull
     @NotBlank

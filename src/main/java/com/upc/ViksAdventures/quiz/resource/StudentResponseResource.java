@@ -7,7 +7,6 @@ import lombok.Setter;
 @Setter
 public class StudentResponseResource {
     private Long id;
-    private int timeTaken;
     private Long quizResultId;
     private Long answerOptionId;
 }

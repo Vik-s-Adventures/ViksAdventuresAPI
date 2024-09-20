@@ -10,10 +10,6 @@ import lombok.Setter;
 public class CreateStudentResponseResource {
     @NotNull
     @NotBlank
-    private int timeTaken;
-
-    @NotNull
-    @NotBlank
     private Long quizResultId;
 
     @NotNull
