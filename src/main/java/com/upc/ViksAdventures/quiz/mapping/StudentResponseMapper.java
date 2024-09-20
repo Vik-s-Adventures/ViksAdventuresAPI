@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class StudentResponseMapper implements Serializable {
     @Autowired
@@ -22,6 +23,12 @@ public class StudentResponseMapper implements Serializable {
 
     public StudentResponse toModel(CreateStudentResponseResource resource) {
         return mapper.map(resource, StudentResponse.class);
+    }
+
+    public List<StudentResponseResource> toResourceList(List<StudentResponse> modelList) {
+        return modelList.stream()
+                .map(this::toResource)
+                .collect(Collectors.toList());
     }
 
     public Page<StudentResponseResource> modelListPage(List<StudentResponse> modelList, Pageable pageable) {

@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuizMapper implements Serializable {
     @Autowired
@@ -27,6 +28,12 @@ public class QuizMapper implements Serializable {
 
     public Quiz toModel(UpdateQuizResource resource) {
         return mapper.map(resource, Quiz.class);
+    }
+
+    public List<QuizResource> toResourceList(List<Quiz> modelList) {
+        return modelList.stream()
+                .map(this::toResource)
+                .collect(Collectors.toList());
     }
 
     public Page<QuizResource> modelListPage(List<Quiz> modelList, Pageable pageable) {

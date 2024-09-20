@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AnswerOptionMapper implements Serializable {
 
@@ -27,6 +28,12 @@ public class AnswerOptionMapper implements Serializable {
 
     public AnswerOption toModel(UpdateAnswerOptionResource resource) {
         return mapper.map(resource, AnswerOption.class);
+    }
+
+    public List<AnswerOptionResource> toResourceList(List<AnswerOption> modelList) {
+        return modelList.stream()
+                .map(this::toResource)
+                .collect(Collectors.toList());
     }
 
     public Page<AnswerOptionResource> modelListPage(List<AnswerOption> modelList, Pageable pageable) {

@@ -2,6 +2,7 @@ package com.upc.ViksAdventures.quiz.mapping;
 
 import com.upc.ViksAdventures.quiz.domain.model.QuizResult;
 import com.upc.ViksAdventures.quiz.resource.CreateQuizResultResource;
+import com.upc.ViksAdventures.quiz.resource.QuizResource;
 import com.upc.ViksAdventures.quiz.resource.QuizResultResource;
 import com.upc.ViksAdventures.shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class QuizResultMapper implements Serializable {
     @Autowired
@@ -22,6 +24,12 @@ public class QuizResultMapper implements Serializable {
 
     public QuizResult toModel(CreateQuizResultResource resource) {
         return mapper.map(resource, QuizResult.class);
+    }
+
+    public List<QuizResultResource> toResourceList(List<QuizResult> modelList) {
+        return modelList.stream()
+                .map(this::toResource)
+                .collect(Collectors.toList());
     }
 
     public Page<QuizResultResource> modelListPage(List<QuizResult> modelList, Pageable pageable) {
