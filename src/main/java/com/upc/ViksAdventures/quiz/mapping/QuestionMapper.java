@@ -1,6 +1,5 @@
 package com.upc.ViksAdventures.quiz.mapping;
 
-import com.upc.ViksAdventures.quiz.domain.model.Performance;
 import com.upc.ViksAdventures.quiz.domain.model.Question;
 import com.upc.ViksAdventures.quiz.resource.QuestionResource;
 import com.upc.ViksAdventures.quiz.resource.CreateQuestionResource;
@@ -28,9 +27,7 @@ public class QuestionMapper implements Serializable {
 
 
     public Question toModel(CreateQuestionResource resource) {
-        Question question = mapper.map(resource, Question.class);
-        question.setPerformance(Performance.values()[resource.getPerformance() - 1]);
-        return question;
+        return mapper.map(resource, Question.class);
     }
 
     public Question toModel(UpdateQuestionResource resource) {

@@ -1,5 +1,6 @@
 package com.upc.ViksAdventures.quiz.resource;
 
+import com.upc.ViksAdventures.quiz.domain.model.Performance;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -10,7 +11,7 @@ import lombok.Setter;
 @Setter
 public class UpdateQuestionResource {
     @NotNull
-    private int performance;
+    private Performance performance;
 
     @NotNull
     @NotBlank
