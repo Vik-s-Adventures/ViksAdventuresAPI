@@ -26,6 +26,9 @@ public class Quiz {
     @Column(name = "description", nullable = false)
     private String description;
 
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
     private List<Question> questions = new ArrayList<>();
+
+    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    private List<Result> results = new ArrayList<>();
 }

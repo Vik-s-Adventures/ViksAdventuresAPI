@@ -1,6 +1,5 @@
 package com.upc.ViksAdventures.quiz.resource;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
@@ -10,17 +9,14 @@ import lombok.*;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateAnswerOptionResource {
+public class CreateOptionResource {
     @NotNull
-    @NotBlank
     @Size(max = 60)
-    private String answerText;
+    private String text;
 
     @NotNull
-    @NotBlank
-    private boolean isCorrect;
+    private boolean correct;
 
     @NotNull
-    @NotBlank
     private Long questionId;
 }

@@ -10,15 +10,13 @@ import lombok.Setter;
 @Setter
 public class UpdateQuestionResource {
     @NotNull
+    private int performance;
+
+    @NotNull
     @NotBlank
     @Size(max = 60)
     private String questionText;
 
     @NotNull
-    @NotBlank
-    private int skill;
-
-    @NotNull
-    @NotBlank
     private Long quizId;
 }

@@ -1,12 +1,10 @@
 package com.upc.ViksAdventures.quiz.service;
 
 import com.upc.ViksAdventures.quiz.domain.model.Question;
-import com.upc.ViksAdventures.quiz.domain.model.Skill;
 import com.upc.ViksAdventures.quiz.domain.persistence.QuestionRepository;
 import com.upc.ViksAdventures.quiz.domain.service.QuestionService;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
 import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
-import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.http.ResponseEntity;
@@ -40,16 +38,11 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getQuestionsByQuizIdAndSkill(Long quizId, Skill skill){
-        return questionRepository.findQuestionByQuizIdAndSkill(quizId,skill);
-    }
-
-    @Override
     public Optional<Question> getBydId(Long questionId) {
         return questionRepository.findById(questionId);
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public Question create(Question question) {
         // Validar las restricciones del objeto Question
@@ -63,7 +56,7 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.save(question);
     }
 
-    @Transactional
+    //@Transactional
     @Override
     public Question update(Long id, Question question) {
         // Validar las restricciones del objeto Question
@@ -72,10 +65,9 @@ public class QuestionServiceImpl implements QuestionService {
         if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
         }
-
         return questionRepository.findById(id).map(existingQuestion -> {
             existingQuestion.setQuestionText(question.getQuestionText());
-            existingQuestion.setSkill(question.getSkill());
+            existingQuestion.setPerformance(question.getPerformance());
             return questionRepository.save(existingQuestion);
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }

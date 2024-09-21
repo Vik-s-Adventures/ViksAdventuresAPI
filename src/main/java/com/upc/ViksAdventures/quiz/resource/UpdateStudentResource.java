@@ -20,7 +20,6 @@ public class UpdateStudentResource {
     private String lastName;
 
     @NotNull
-    @NotBlank
     private int gradeLevel;
 
     @NotNull

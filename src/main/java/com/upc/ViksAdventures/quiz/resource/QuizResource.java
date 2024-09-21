@@ -12,4 +12,5 @@ public class QuizResource {
     private String title;
     private String description;
     private List<QuestionResource> questions;
+    private List<ResultResource> results;
 }

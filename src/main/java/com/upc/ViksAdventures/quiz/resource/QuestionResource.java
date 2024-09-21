@@ -10,7 +10,7 @@ import java.util.List;
 public class QuestionResource {
     private Long id;
     private String questionText;
-    private String skill;
+    private String performance;
     private Long quizId;
-    private List<AnswerOptionResource> answerOptions;
+    private List<OptionResource> options;
 }

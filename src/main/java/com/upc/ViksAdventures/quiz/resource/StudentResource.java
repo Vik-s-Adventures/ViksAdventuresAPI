@@ -1,6 +1,6 @@
 package com.upc.ViksAdventures.quiz.resource;
 
-import com.upc.ViksAdventures.quiz.domain.model.QuizResult;
+import com.upc.ViksAdventures.quiz.domain.model.Response;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,5 +14,5 @@ public class StudentResource {
     private String lastName;
     private int gradeLevel;
     private String birthDate;
-    private List<QuizResult> quizResults;
+    private List<Response> responses;
 }

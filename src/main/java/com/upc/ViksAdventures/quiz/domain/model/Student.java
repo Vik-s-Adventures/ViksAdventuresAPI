@@ -32,6 +32,6 @@ public class Student {
     @Column(name = "birth_date", nullable = false)
     private String birthDate;
 
-    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<QuizResult> quizResults = new ArrayList<>();
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private List<Response> responses = new ArrayList<>();
 }

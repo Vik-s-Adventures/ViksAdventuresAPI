@@ -1,13 +1,14 @@
 package com.upc.ViksAdventures.quiz.api.rest;
 
+import com.upc.ViksAdventures.quiz.domain.model.Performance;
 import com.upc.ViksAdventures.quiz.domain.model.Question;
-import com.upc.ViksAdventures.quiz.domain.model.Skill;
 import com.upc.ViksAdventures.quiz.domain.service.QuestionService;
 import com.upc.ViksAdventures.quiz.mapping.QuestionMapper;
 import com.upc.ViksAdventures.quiz.resource.CreateQuestionResource;
 import com.upc.ViksAdventures.quiz.resource.QuestionResource;
 import com.upc.ViksAdventures.quiz.resource.UpdateQuestionResource;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
+import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 
@@ -36,13 +37,6 @@ public class QuestionController {
         return mapper.toResourceList(questionService.getQuestionsByQuizId(quizId));
     }
 
-    // Obtener preguntas por quizId y skill
-    @GetMapping("/quiz/{quizId}/skill/{skill}")
-    public List<QuestionResource> getQuestionsByQuizIdAndSkill(@PathVariable Long quizId, @PathVariable int skill) {
-        Skill skillEnum = Skill.values()[skill];
-        return mapper.toResourceList(questionService.getQuestionsByQuizIdAndSkill(quizId, skillEnum));
-    }
-
     // Obtener una pregunta por su id
     @GetMapping("/{id}")
     public QuestionResource getQuestionById(@PathVariable Long id) {
@@ -54,6 +48,9 @@ public class QuestionController {
     // Crear una nueva pregunta
     @PostMapping
     public QuestionResource createQuestion(@RequestBody CreateQuestionResource resource) {
+        if (resource.getPerformance() < 1 || resource.getPerformance() > 10) {
+            throw new ResourceValidationException("Question", "Invalid performance value: " + resource.getPerformance());
+        }
         Question question = mapper.toModel(resource);
         return mapper.toResource(questionService.create(question));
     }
