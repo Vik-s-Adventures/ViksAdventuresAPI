@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration("VikAdventureMappingConfiguration")
 public class MappingConfiguration {
     @Bean
-    public OptionMapper OptionMapper() {
+    public OptionMapper optionMapper() {
         return new OptionMapper();
     }
 

@@ -1,6 +1,5 @@
 package com.upc.ViksAdventures.quiz.resource;
 
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.Getter;
@@ -18,8 +17,20 @@ public class CreateStudentResource {
     private String lastName;
 
     @NotNull
-    private int gradeLevel;
+    private String birthDate;
 
     @NotNull
-    private String birthDate;
+    private String sex;
+
+    @NotNull
+    private int gradeLevel;
+
+    private String school;
+
+    private String department;
+
+    private String province;
+
+    private String district;
+
 }

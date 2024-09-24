@@ -1,7 +1,9 @@
 package com.upc.ViksAdventures.quiz.mapping;
 
 import com.upc.ViksAdventures.quiz.domain.model.Option;
-import com.upc.ViksAdventures.quiz.resource.*;
+import com.upc.ViksAdventures.quiz.resource.OptionResource;
+import com.upc.ViksAdventures.quiz.resource.CreateOptionResource;
+import com.upc.ViksAdventures.quiz.resource.UpdateOptionResource;
 import com.upc.ViksAdventures.shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

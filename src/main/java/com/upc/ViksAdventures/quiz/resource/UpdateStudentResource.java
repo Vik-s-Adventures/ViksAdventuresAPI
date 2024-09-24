@@ -10,19 +10,27 @@ import lombok.Setter;
 @Setter
 public class UpdateStudentResource {
     @NotNull
-    @NotBlank
     @Size(max = 30)
     private String firstName;
 
     @NotNull
-    @NotBlank
     @Size(max = 30)
     private String lastName;
 
     @NotNull
-    private int gradeLevel;
+    private String birthDate;
 
     @NotNull
-    @NotBlank
-    private String birthDate;
+    private String sex;
+
+    @NotNull
+    private int gradeLevel;
+
+    private String school;
+
+    private String department;
+
+    private String province;
+
+    private String district;
 }

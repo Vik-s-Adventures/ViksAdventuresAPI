@@ -26,11 +26,26 @@ public class Student {
     @Column(name = "last_name", nullable = false)
     private String lastName;
 
+    @Column(name = "birth_date", nullable = false)
+    private String birthDate;
+
+    @Column(name = "sex", nullable = false)
+    private String sex;
+
     @Column(name = "grade_level", nullable = false)
     private int gradeLevel;
 
-    @Column(name = "birth_date", nullable = false)
-    private String birthDate;
+    @Column(name = "school")
+    private String school;
+
+    @Column(name="department")
+    private String department;
+
+    @Column(name="province")
+    private String province;
+
+    @Column(name="district")
+    private String district;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Response> responses = new ArrayList<>();

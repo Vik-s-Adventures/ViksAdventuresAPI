@@ -6,6 +6,7 @@ import com.upc.ViksAdventures.quiz.mapping.StudentMapper;
 import com.upc.ViksAdventures.quiz.resource.CreateStudentResource;
 import com.upc.ViksAdventures.quiz.resource.StudentResource;
 import com.upc.ViksAdventures.quiz.resource.UpdateStudentResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ public class StudentController {
     private final StudentService studentService;
     private final StudentMapper mapper;
 
+    @Autowired
     public StudentController(StudentService studentService, StudentMapper mapper) {
         this.studentService = studentService;
         this.mapper = mapper;

@@ -8,8 +8,7 @@ import com.upc.ViksAdventures.quiz.mapping.QuestionMapper;
 import com.upc.ViksAdventures.quiz.resource.CreateQuestionResource;
 import com.upc.ViksAdventures.quiz.resource.QuestionResource;
 import com.upc.ViksAdventures.quiz.resource.UpdateQuestionResource;
-import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
-import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +22,7 @@ public class QuestionController {
     private final QuizService quizService;
     private final QuestionMapper mapper;
 
+    @Autowired
     public QuestionController(QuestionService questionService, QuizService quizService, QuestionMapper mapper) {
         this.questionService = questionService;
         this.quizService = quizService;
@@ -44,9 +44,7 @@ public class QuestionController {
     // Obtener una pregunta por su id
     @GetMapping("/{id}")
     public QuestionResource getQuestionById(@PathVariable Long id) {
-        return questionService.getBydId(id)
-                .map(mapper::toResource)
-                .orElseThrow(() -> new ResourceNotFoundException("Question", id));
+        return mapper.toResource(questionService.getBydId(id));
     }
 
     // Crear una nueva pregunta

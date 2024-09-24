@@ -5,7 +5,6 @@ import com.upc.ViksAdventures.quiz.domain.persistence.OptionRepository;
 import com.upc.ViksAdventures.quiz.domain.service.OptionService;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
 import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
-import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +15,7 @@ import java.util.Set;
 
 @Service
 public class OptionServiceImpl implements OptionService {
+
     private static final String ENTITY = "Option";
     private final OptionRepository optionRepository;
     private final Validator validator;
@@ -36,34 +36,40 @@ public class OptionServiceImpl implements OptionService {
                 .orElseThrow(() -> new ResourceNotFoundException(ENTITY, answerOptionId));
     }
 
-    @Transactional
     @Override
     public Option create(Option option) {
+        // Validar las restricciones
         Set<ConstraintViolation<Option>> violations = validator.validate(option);
+
         if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
         }
-        // Validar si ya existe una opción correcta
+
         validateCorrectAnswerOption(option);
         return optionRepository.save(option);
     }
 
-    @Transactional
+
     @Override
     public Option update(Long id, Option option) {
-        Set<ConstraintViolation<Option>> violations = validator.validate(option);
+        // Verificar si la opción existe
+        Option existingOption = optionRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró la opción con el id: " + id));
+
+        // Actualizar los campos
+        existingOption.setText(option.getText());
+        existingOption.setCorrect(option.isCorrect());
+        existingOption.setQuestion(option.getQuestion());
+
+        // Validar la entidad actualizada
+        Set<ConstraintViolation<Option>> violations = validator.validate(existingOption);
 
         if (!violations.isEmpty()) {
-            throw new ResourceValidationException(ENTITY, violations);
+            throw new ResourceValidationException("Option", violations);
         }
-        return optionRepository.findById(id).map(existingOption -> {
-            // Validar si ya existe una opción correcta
-            validateCorrectAnswerOption(option);
-            existingOption.setCorrect(option.isCorrect());
-            return optionRepository.save(existingOption);
-        }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
+        validateCorrectAnswerOption(existingOption);
+        return optionRepository.save(existingOption);
     }
-
 
     @Override
     public ResponseEntity<?> delete(Long answerOptionId) {
@@ -75,12 +81,17 @@ public class OptionServiceImpl implements OptionService {
 
     private void validateCorrectAnswerOption(Option option) {
         if (option.isCorrect()) {
-            int correctAnswersCount = optionRepository
-                    .countOptionByQuestionIdAndCorrect(option.getQuestion().getId(), true);
+            Long questionId = option.getQuestion().getId();
 
+            // Contar opciones correctas
+            int correctAnswersCount = optionRepository
+                    .countOptionByQuestionIdAndCorrect(questionId, true);
+
+            // Si hay una opcion correcta ya registrada, lanzar excepción
             if (correctAnswersCount > 0) {
-                throw new ResourceValidationException(ENTITY, "Solo debe haber una respuesta correcta por pregunta.");
+                throw new ResourceValidationException(ENTITY, "Solo puede haber una opción correcta por pregunta.");
             }
         }
     }
+
 }

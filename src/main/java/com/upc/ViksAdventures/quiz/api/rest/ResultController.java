@@ -5,6 +5,7 @@ import com.upc.ViksAdventures.quiz.domain.service.ResultService;
 import com.upc.ViksAdventures.quiz.mapping.ResultMapper;
 import com.upc.ViksAdventures.quiz.resource.CreateResultResource;
 import com.upc.ViksAdventures.quiz.resource.ResultResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ public class ResultController {
     private final ResultService quizResultService;
     private final ResultMapper mapper;
 
+    @Autowired
     public ResultController(ResultService quizResultService, ResultMapper mapper) {
         this.quizResultService = quizResultService;
         this.mapper = mapper;

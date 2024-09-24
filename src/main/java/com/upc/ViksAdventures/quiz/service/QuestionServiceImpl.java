@@ -18,7 +18,6 @@ import java.util.Set;
 public class QuestionServiceImpl implements QuestionService {
 
     private static final String ENTITY = "Question";
-
     private final QuestionRepository questionRepository;
     private final Validator validator;
 
@@ -38,14 +37,13 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public Optional<Question> getBydId(Long questionId) {
-        return questionRepository.findById(questionId);
+    public Question getBydId(Long questionId) {
+        return questionRepository.findById(questionId).orElseThrow(() -> new ResourceNotFoundException(ENTITY, questionId));
     }
 
-    //@Transactional
     @Override
     public Question create(Question question) {
-        // Validar las restricciones del objeto Question
+        // Validar las restricciones
         Set<ConstraintViolation<Question>> violations = validator.validate(question);
 
         if (!violations.isEmpty()) {
@@ -56,7 +54,6 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.save(question);
     }
 
-    //@Transactional
     @Override
     public Question update(Long id, Question question) {
         // Validar las restricciones del objeto Question

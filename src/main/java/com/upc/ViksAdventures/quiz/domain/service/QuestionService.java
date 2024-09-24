@@ -10,7 +10,7 @@ import java.util.Optional;
 public interface QuestionService {
     List<Question> getAll();
     List<Question> getQuestionsByQuizId(Long quizId);
-    Optional<Question> getBydId(Long questionId);
+    Question getBydId(Long questionId);
     Question create(Question question);
     Question update(Long id, Question question);
     ResponseEntity<?> delete(Long questionId);
