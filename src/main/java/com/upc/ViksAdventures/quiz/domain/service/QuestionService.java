@@ -1,11 +1,9 @@
 package com.upc.ViksAdventures.quiz.domain.service;
 
 import com.upc.ViksAdventures.quiz.domain.model.Question;
-import com.upc.ViksAdventures.quiz.domain.model.Performance;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface QuestionService {
     List<Question> getAll();

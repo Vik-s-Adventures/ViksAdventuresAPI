@@ -2,14 +2,12 @@ package com.upc.ViksAdventures.quiz.api.rest;
 
 import com.upc.ViksAdventures.quiz.domain.model.Option;
 import com.upc.ViksAdventures.quiz.domain.model.Question;
-import com.upc.ViksAdventures.quiz.domain.model.Quiz;
 import com.upc.ViksAdventures.quiz.domain.service.OptionService;
 import com.upc.ViksAdventures.quiz.domain.service.QuestionService;
 import com.upc.ViksAdventures.quiz.mapping.OptionMapper;
 import com.upc.ViksAdventures.quiz.resource.OptionResource;
 import com.upc.ViksAdventures.quiz.resource.CreateOptionResource;
 import com.upc.ViksAdventures.quiz.resource.UpdateOptionResource;
-import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
