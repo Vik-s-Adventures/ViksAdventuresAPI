@@ -7,8 +7,8 @@ import org.springframework.context.annotation.Configuration;
 @Configuration("VikAdventureMappingConfiguration")
 public class MappingConfiguration {
     @Bean
-    public AnswerOptionMapper answerOptionMapper() {
-        return new AnswerOptionMapper();
+    public OptionMapper optionMapper() {
+        return new OptionMapper();
     }
 
     @Bean
@@ -22,8 +22,8 @@ public class MappingConfiguration {
     }
 
     @Bean
-    public QuizResultMapper quizResultMapper() {
-        return new QuizResultMapper();
+    public ResultMapper resultMapper() {
+        return new ResultMapper();
     }
 
     @Bean
@@ -32,7 +32,7 @@ public class MappingConfiguration {
     }
 
     @Bean
-    public StudentResponseMapper studentResponseMapper() {
-        return new StudentResponseMapper();
+    public ResponseMapper responseMapper() {
+        return new ResponseMapper();
     }
 }

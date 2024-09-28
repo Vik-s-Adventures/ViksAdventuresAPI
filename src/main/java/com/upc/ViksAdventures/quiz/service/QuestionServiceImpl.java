@@ -1,26 +1,22 @@
 package com.upc.ViksAdventures.quiz.service;
 
 import com.upc.ViksAdventures.quiz.domain.model.Question;
-import com.upc.ViksAdventures.quiz.domain.model.Skill;
 import com.upc.ViksAdventures.quiz.domain.persistence.QuestionRepository;
 import com.upc.ViksAdventures.quiz.domain.service.QuestionService;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
 import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
-import jakarta.transaction.Transactional;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
 public class QuestionServiceImpl implements QuestionService {
 
     private static final String ENTITY = "Question";
-
     private final QuestionRepository questionRepository;
     private final Validator validator;
 
@@ -40,19 +36,13 @@ public class QuestionServiceImpl implements QuestionService {
     }
 
     @Override
-    public List<Question> getQuestionsByQuizIdAndSkill(Long quizId, Skill skill){
-        return questionRepository.findQuestionByQuizIdAndSkill(quizId,skill);
+    public Question getBydId(Long questionId) {
+        return questionRepository.findById(questionId).orElseThrow(() -> new ResourceNotFoundException(ENTITY, questionId));
     }
 
-    @Override
-    public Optional<Question> getBydId(Long questionId) {
-        return questionRepository.findById(questionId);
-    }
-
-    @Transactional
     @Override
     public Question create(Question question) {
-        // Validar las restricciones del objeto Question
+        // Validar las restricciones
         Set<ConstraintViolation<Question>> violations = validator.validate(question);
 
         if (!violations.isEmpty()) {
@@ -63,7 +53,6 @@ public class QuestionServiceImpl implements QuestionService {
         return questionRepository.save(question);
     }
 
-    @Transactional
     @Override
     public Question update(Long id, Question question) {
         // Validar las restricciones del objeto Question
@@ -72,10 +61,9 @@ public class QuestionServiceImpl implements QuestionService {
         if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
         }
-
         return questionRepository.findById(id).map(existingQuestion -> {
             existingQuestion.setQuestionText(question.getQuestionText());
-            existingQuestion.setSkill(question.getSkill());
+            existingQuestion.setPerformance(question.getPerformance());
             return questionRepository.save(existingQuestion);
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, id));
     }

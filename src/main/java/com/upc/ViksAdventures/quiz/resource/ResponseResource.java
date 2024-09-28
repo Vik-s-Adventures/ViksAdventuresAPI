@@ -5,9 +5,8 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AnswerOptionResource {
+public class ResponseResource {
     private Long id;
-    private String answerText;
-    private boolean isCorrect;
-    private Long questionId;
+    private Long optionId;
+    private Long studentId;
 }

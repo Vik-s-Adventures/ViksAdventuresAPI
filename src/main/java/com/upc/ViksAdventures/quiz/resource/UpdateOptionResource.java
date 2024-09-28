@@ -10,17 +10,15 @@ import lombok.*;
 @With
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateAnswerOptionResource {
+public class UpdateOptionResource {
     @NotNull
     @NotBlank
     @Size(max = 60)
-    private String answerText;
+    private String text;
 
     @NotNull
-    @NotBlank
-    private boolean isCorrect;
+    private boolean correct;
 
     @NotNull
-    @NotBlank
     private Long questionId;
 }

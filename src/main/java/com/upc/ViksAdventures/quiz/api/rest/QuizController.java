@@ -6,6 +6,7 @@ import com.upc.ViksAdventures.quiz.mapping.QuizMapper;
 import com.upc.ViksAdventures.quiz.resource.CreateQuizResource;
 import com.upc.ViksAdventures.quiz.resource.QuizResource;
 import com.upc.ViksAdventures.quiz.resource.UpdateQuizResource;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ public class QuizController {
     private final QuizService quizService;
     private final QuizMapper mapper;
 
+    @Autowired
     public QuizController(QuizService quizService, QuizMapper mapper) {
         this.quizService = quizService;
         this.mapper = mapper;

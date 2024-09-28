@@ -54,13 +54,11 @@ public class StudentServiceImpl implements StudentService {
         if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
         }
-
         return studentRepository.findById(studentId).map(existingStudent -> {
             existingStudent.setFirstName(student.getFirstName());
             existingStudent.setLastName(student.getLastName());
             existingStudent.setGradeLevel(student.getGradeLevel());
             existingStudent.setBirthDate(student.getBirthDate());
-
             return studentRepository.save(existingStudent);
         }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, studentId));
     }
