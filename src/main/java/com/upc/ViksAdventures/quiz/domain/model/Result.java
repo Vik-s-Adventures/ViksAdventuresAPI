@@ -1,5 +1,6 @@
 package com.upc.ViksAdventures.quiz.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,6 +22,7 @@ public class Result {
     private int score;
 
     @ManyToOne
-    @JoinColumn(name="quiz_id", nullable = false)
-    private Quiz quiz;
+    @JoinColumn(name="student_id", nullable = false)
+    @JsonBackReference
+    private Student student;
 }

@@ -1,5 +1,6 @@
 package com.upc.ViksAdventures.quiz.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -27,8 +28,6 @@ public class Quiz {
     private String description;
 
     @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Question> questions = new ArrayList<>();
-
-    @OneToMany(mappedBy = "quiz", cascade = CascadeType.ALL)
-    private List<Result> results = new ArrayList<>();
 }

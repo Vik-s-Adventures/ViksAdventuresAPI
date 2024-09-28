@@ -48,10 +48,10 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public ResponseEntity<?> delete(Long quizResultId) {
-        return resultRepository.findById(quizResultId).map(quizResult -> {
+    public ResponseEntity<?> delete(Long resultId) {
+        return resultRepository.findById(resultId).map(quizResult -> {
             resultRepository.delete(quizResult);
             return ResponseEntity.ok().build();
-        }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, quizResultId));
+        }).orElseThrow(() -> new ResourceNotFoundException(ENTITY, resultId));
     }
 }
