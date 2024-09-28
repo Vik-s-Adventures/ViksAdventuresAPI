@@ -11,5 +11,5 @@ public class CreateResultResource {
     private int score;
 
     @NotNull
-    private Long quizId;
+    private Long studentId;
 }

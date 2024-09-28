@@ -12,40 +12,40 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/quiz-results", produces = "application/json")
+@RequestMapping(value = "/api/v1/results", produces = "application/json")
 public class ResultController {
-    private final ResultService quizResultService;
+    private final ResultService resultService;
     private final ResultMapper mapper;
 
     @Autowired
-    public ResultController(ResultService quizResultService, ResultMapper mapper) {
-        this.quizResultService = quizResultService;
+    public ResultController(ResultService resultService, ResultMapper mapper) {
+        this.resultService = resultService;
         this.mapper = mapper;
     }
 
     // Obtener todos los resultados de quizzes
     @GetMapping
     public List<ResultResource> getAllQuizResults() {
-        return mapper.toResourceList(quizResultService.getAll());
+        return mapper.toResourceList(resultService.getAll());
     }
 
     // Obtener un resultado de quiz por su id
     @GetMapping("/{id}")
     public ResultResource getResultById(@PathVariable Long id) {
-        return mapper.toResource(quizResultService.getBydId(id));
+        return mapper.toResource(resultService.getBydId(id));
     }
 
     // Crear un nuevo resultado de quiz
     @PostMapping
     public ResultResource createQuizResult(@RequestBody CreateResultResource resource) {
         Result result = mapper.toModel(resource);
-        return mapper.toResource(quizResultService.create(result));
+        return mapper.toResource(resultService.create(result));
     }
 
     // Eliminar un resultado de quiz
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteQuizResult(@PathVariable Long id) {
-        return quizResultService.delete(id);
+        return resultService.delete(id);
     }
 
 }

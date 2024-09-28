@@ -1,5 +1,6 @@
 package com.upc.ViksAdventures.quiz.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -48,5 +49,10 @@ public class Student {
     private String district;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Response> responses = new ArrayList<>();
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Result> results = new ArrayList<>();
 }
