@@ -4,8 +4,8 @@ package com.upc.ViksAdventures.quiz.mapping;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration("VikAdventureMappingConfiguration")
-public class MappingConfiguration {
+@Configuration("VikAdventureQuizMappingConfiguration")
+public class QuizMappingConfiguration {
     @Bean
     public OptionMapper optionMapper() {
         return new OptionMapper();
