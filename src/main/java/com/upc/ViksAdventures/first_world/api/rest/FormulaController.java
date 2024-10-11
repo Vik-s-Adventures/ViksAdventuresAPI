@@ -1,7 +1,9 @@
 package com.upc.ViksAdventures.first_world.api.rest;
 
 import com.upc.ViksAdventures.first_world.domain.model.Formula;
+import com.upc.ViksAdventures.first_world.domain.model.Topic;
 import com.upc.ViksAdventures.first_world.domain.service.FormulaService;
+import com.upc.ViksAdventures.first_world.domain.service.TopicService;
 import com.upc.ViksAdventures.first_world.mapping.FormulaMapper;
 import com.upc.ViksAdventures.first_world.resource.FormulaResource;
 import com.upc.ViksAdventures.first_world.resource.CreateFormulaResource;
@@ -16,12 +18,13 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/formulas", produces = "application/json")
 public class FormulaController {
-
+    private final TopicService topicService;
     private final FormulaService formulaService;
     private final FormulaMapper mapper;
 
     @Autowired
-    public FormulaController(FormulaService formulaService, FormulaMapper mapper) {
+    public FormulaController(TopicService topicService, FormulaService formulaService, FormulaMapper mapper) {
+        this.topicService = topicService;
         this.formulaService = formulaService;
         this.mapper = mapper;
     }
@@ -42,17 +45,25 @@ public class FormulaController {
 
     @PostMapping
     public ResponseEntity<FormulaResource> createFormula(@RequestBody CreateFormulaResource resource) {
-        Formula formula = mapper.toModel(resource);
+        Topic topic = topicService.getById(resource.getTopicId());
+
+        Formula formula = new Formula();
+        formula.setTopic(topic);
+        formula.setExpression(resource.getExpression());
+
         Formula savedFormula = formulaService.create(formula);
         return new ResponseEntity<>(mapper.toResource(savedFormula), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<FormulaResource> updateFormula(@PathVariable Long id, @RequestBody UpdateFormulaResource resource) {
+        Topic topic = topicService.getById(resource.getTopicId());
+
         Formula formula = mapper.toModel(resource);
+        formula.setTopic(topic);
         Formula updatedFormula = formulaService.update(id, formula);
-        FormulaResource formulaResource = mapper.toResource(updatedFormula);
-        return new ResponseEntity<>(formulaResource, HttpStatus.OK);
+
+        return new ResponseEntity<>(mapper.toResource(updatedFormula), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

@@ -1,7 +1,9 @@
 package com.upc.ViksAdventures.first_world.api.rest;
 
 import com.upc.ViksAdventures.first_world.domain.model.Definition;
+import com.upc.ViksAdventures.first_world.domain.model.Topic;
 import com.upc.ViksAdventures.first_world.domain.service.DefinitionService;
+import com.upc.ViksAdventures.first_world.domain.service.TopicService;
 import com.upc.ViksAdventures.first_world.mapping.DefinitionMapper;
 import com.upc.ViksAdventures.first_world.resource.DefinitionResource;
 import com.upc.ViksAdventures.first_world.resource.CreateDefinitionResource;
@@ -16,12 +18,13 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/definitions", produces = "application/json")
 public class DefinitionController {
-
+    private final TopicService topicService;
     private final DefinitionService definitionService;
     private final DefinitionMapper mapper;
 
     @Autowired
-    public DefinitionController(DefinitionService definitionService, DefinitionMapper mapper) {
+    public DefinitionController(TopicService topicService, DefinitionService definitionService, DefinitionMapper mapper) {
+        this.topicService = topicService;
         this.definitionService = definitionService;
         this.mapper = mapper;
     }
@@ -42,17 +45,25 @@ public class DefinitionController {
 
     @PostMapping
     public ResponseEntity<DefinitionResource> createDefinition(@RequestBody CreateDefinitionResource resource) {
-        Definition definition = mapper.toModel(resource);
+        Topic topic = topicService.getById(resource.getTopicId());
+
+        Definition definition = new Definition();
+        definition.setTopic(topic);
+        definition.setDescription(resource.getDescription());
+
         Definition savedDefinition = definitionService.create(definition);
         return new ResponseEntity<>(mapper.toResource(savedDefinition), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<DefinitionResource> updateDefinition(@PathVariable Long id, @RequestBody UpdateDefinitionResource resource) {
+        Topic topic = topicService.getById(resource.getTopicId());
+
         Definition definition = mapper.toModel(resource);
+        definition.setTopic(topic);
         Definition updatedDefinition = definitionService.update(id, definition);
-        DefinitionResource definitionResource = mapper.toResource(updatedDefinition);
-        return new ResponseEntity<>(definitionResource, HttpStatus.OK);
+
+        return new ResponseEntity<>(mapper.toResource(updatedDefinition), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

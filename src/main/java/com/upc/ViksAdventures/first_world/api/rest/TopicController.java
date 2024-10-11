@@ -1,6 +1,8 @@
 package com.upc.ViksAdventures.first_world.api.rest;
 
+import com.upc.ViksAdventures.first_world.domain.model.Performance;
 import com.upc.ViksAdventures.first_world.domain.model.Topic;
+import com.upc.ViksAdventures.first_world.domain.service.PerformanceService;
 import com.upc.ViksAdventures.first_world.domain.service.TopicService;
 import com.upc.ViksAdventures.first_world.mapping.TopicMapper;
 import com.upc.ViksAdventures.first_world.resource.TopicResource;
@@ -16,12 +18,13 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/topics", produces = "application/json")
 public class TopicController {
-
+    private final PerformanceService performanceService;
     private final TopicService topicService;
     private final TopicMapper mapper;
 
     @Autowired
-    public TopicController(TopicService topicService, TopicMapper mapper) {
+    public TopicController(PerformanceService performanceService, TopicService topicService, TopicMapper mapper) {
+        this.performanceService = performanceService;
         this.topicService = topicService;
         this.mapper = mapper;
     }
@@ -42,17 +45,25 @@ public class TopicController {
 
     @PostMapping
     public ResponseEntity<TopicResource> createTopic(@RequestBody CreateTopicResource resource) {
-        Topic topic = mapper.toModel(resource);
+        Performance performance = performanceService.getById(resource.getPerformanceId());
+
+        Topic topic = new Topic();
+        topic.setPerformance(performance);
+        topic.setName(resource.getName());
+
         Topic savedTopic = topicService.create(topic);
         return new ResponseEntity<>(mapper.toResource(savedTopic), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TopicResource> updateTopic(@PathVariable Long id, @RequestBody UpdateTopicResource resource) {
+        Performance performance = performanceService.getById(resource.getPerformanceId());
+
         Topic topic = mapper.toModel(resource);
+        topic.setPerformance(performance);
         Topic updatedTopic = topicService.update(id, topic);
-        TopicResource topicResource = mapper.toResource(updatedTopic);
-        return new ResponseEntity<>(topicResource, HttpStatus.OK);
+
+        return new ResponseEntity<>(mapper.toResource(updatedTopic), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
