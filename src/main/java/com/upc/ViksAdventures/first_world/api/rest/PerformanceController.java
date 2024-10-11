@@ -1,7 +1,9 @@
 package com.upc.ViksAdventures.first_world.api.rest;
 
 import com.upc.ViksAdventures.first_world.domain.model.Performance;
+import com.upc.ViksAdventures.first_world.domain.model.Competence;
 import com.upc.ViksAdventures.first_world.domain.service.PerformanceService;
+import com.upc.ViksAdventures.first_world.domain.service.CompetenceService;
 import com.upc.ViksAdventures.first_world.mapping.PerformanceMapper;
 import com.upc.ViksAdventures.first_world.resource.PerformanceResource;
 import com.upc.ViksAdventures.first_world.resource.CreatePerformanceResource;
@@ -18,12 +20,14 @@ import java.util.List;
 public class PerformanceController {
 
     private final PerformanceService performanceService;
+    private final CompetenceService competenceService;
     private final PerformanceMapper mapper;
 
     @Autowired
-    public PerformanceController(PerformanceService performanceService, PerformanceMapper mapper) {
+    public PerformanceController(PerformanceService performanceService, PerformanceMapper mapper, CompetenceService competenceService) {
         this.performanceService = performanceService;
         this.mapper = mapper;
+        this.competenceService = competenceService;
     }
 
     @GetMapping
@@ -42,21 +46,30 @@ public class PerformanceController {
 
     @PostMapping
     public ResponseEntity<PerformanceResource> createPerformance(@RequestBody CreatePerformanceResource resource) {
-        Performance performance = mapper.toModel(resource);
+        Competence competence = competenceService.getById(resource.getCompetenceId());
+
+        Performance performance = new Performance();
+        performance.setCompetence(competence);
+        performance.setDescription(resource.getDescription());
+
         Performance savedPerformance = performanceService.create(performance);
         return new ResponseEntity<>(mapper.toResource(savedPerformance), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PerformanceResource> updatePerformance(@PathVariable Long id, @RequestBody UpdatePerformanceResource resource) {
+        Competence competence = competenceService.getById(resource.getCompetenceId());
+
         Performance performance = mapper.toModel(resource);
+        performance.setCompetence(competence);
         Performance updatedPerformance = performanceService.update(id, performance);
-        PerformanceResource performanceResource = mapper.toResource(updatedPerformance);
-        return new ResponseEntity<>(performanceResource, HttpStatus.OK);
+
+        return new ResponseEntity<>(mapper.toResource(updatedPerformance), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deletePerformance(@PathVariable Long id) {
+        // Eliminamos el Performance
         performanceService.delete(id);
         return ResponseEntity.ok().build();
     }

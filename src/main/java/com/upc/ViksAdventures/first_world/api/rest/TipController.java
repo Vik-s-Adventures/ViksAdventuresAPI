@@ -1,7 +1,9 @@
 package com.upc.ViksAdventures.first_world.api.rest;
 
 import com.upc.ViksAdventures.first_world.domain.model.Tip;
+import com.upc.ViksAdventures.first_world.domain.model.Topic;
 import com.upc.ViksAdventures.first_world.domain.service.TipService;
+import com.upc.ViksAdventures.first_world.domain.service.TopicService;
 import com.upc.ViksAdventures.first_world.mapping.TipMapper;
 import com.upc.ViksAdventures.first_world.resource.TipResource;
 import com.upc.ViksAdventures.first_world.resource.CreateTipResource;
@@ -16,12 +18,13 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/v1/tips", produces = "application/json")
 public class TipController {
-
+    private final TopicService topicService;
     private final TipService tipService;
     private final TipMapper mapper;
 
     @Autowired
-    public TipController(TipService tipService, TipMapper mapper) {
+    public TipController(TopicService topicService, TipService tipService, TipMapper mapper) {
+        this.topicService = topicService;
         this.tipService = tipService;
         this.mapper = mapper;
     }
@@ -42,17 +45,25 @@ public class TipController {
 
     @PostMapping
     public ResponseEntity<TipResource> createTip(@RequestBody CreateTipResource resource) {
-        Tip tip = mapper.toModel(resource);
+        Topic topic = topicService.getById(resource.getTopicId());
+
+        Tip tip = new Tip();
+        tip.setTopic(topic);
+        tip.setTipText(resource.getTipText());
+
         Tip savedTip = tipService.create(tip);
         return new ResponseEntity<>(mapper.toResource(savedTip), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<TipResource> updateTip(@PathVariable Long id, @RequestBody UpdateTipResource resource) {
+        Topic topic = topicService.getById(resource.getTopicId());
+
         Tip tip = mapper.toModel(resource);
+        tip.setTopic(topic);
         Tip updatedTip = tipService.update(id, tip);
-        TipResource tipResource = mapper.toResource(updatedTip);
-        return new ResponseEntity<>(tipResource, HttpStatus.OK);
+
+        return new ResponseEntity<>(mapper.toResource(updatedTip), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
