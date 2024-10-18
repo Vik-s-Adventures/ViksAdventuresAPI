@@ -13,8 +13,9 @@ public class CreateQuestionResource {
     private Performance performance;
 
     @NotNull
-    @Size(max = 60)
     private String questionText;
+
+    private String imageUrl;
 
     @NotNull
     private Long quizId;

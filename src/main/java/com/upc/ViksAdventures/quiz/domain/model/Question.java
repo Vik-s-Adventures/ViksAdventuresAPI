@@ -29,6 +29,9 @@ public class Question {
     @Column(name = "question_text", nullable = false)
     private String questionText;
 
+    @Column(name="image_url")
+    private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name = "quiz_id", nullable = false)
     @JsonBackReference

@@ -14,9 +14,9 @@ public class UpdateQuestionResource {
     private Performance performance;
 
     @NotNull
-    @NotBlank
-    @Size(max = 60)
     private String questionText;
+
+    private String imageUrl;
 
     @NotNull
     private Long quizId;

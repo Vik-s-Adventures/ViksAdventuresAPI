@@ -57,6 +57,7 @@ public class QuestionController {
         Question question = new Question();
         question.setQuiz(quiz);
         question.setQuestionText(resource.getQuestionText());
+        question.setImageUrl(resource.getImageUrl());
         question.setPerformance(resource.getPerformance());
 
         // Guardar la nueva pregunta en la base de datos

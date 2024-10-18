@@ -10,6 +10,7 @@ import java.util.List;
 public class QuestionResource {
     private Long id;
     private String questionText;
+    private String imageUrl;
     private String performance;
     private Long quizId;
     private List<OptionResource> options;
