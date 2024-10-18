@@ -21,6 +21,9 @@ public class Result {
     @Column(name = "score", nullable = false)
     private int score;
 
+    @Column(name = "quiz_id", nullable = false)
+    private Long quizId;
+
     @ManyToOne
     @JoinColumn(name="student_id", nullable = false)
     @JsonBackReference

@@ -1,12 +1,16 @@
 package com.upc.ViksAdventures.quiz.service;
 
+import com.upc.ViksAdventures.quiz.domain.events.ResponseCreatedEvent;
+import com.upc.ViksAdventures.quiz.domain.model.Quiz;
 import com.upc.ViksAdventures.quiz.domain.model.Response;
+import com.upc.ViksAdventures.quiz.domain.model.Student;
 import com.upc.ViksAdventures.quiz.domain.persistence.ResponseRepository;
 import com.upc.ViksAdventures.quiz.domain.service.ResponseService;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
 import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
+import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +23,12 @@ public class ResponseServiceImpl implements ResponseService {
 
     private final ResponseRepository responseRepository;
     private final Validator validator;
+    private final ApplicationEventPublisher eventPublisher;
 
-    public ResponseServiceImpl(ResponseRepository responseRepository, Validator validator) {
+    public ResponseServiceImpl(ResponseRepository responseRepository, Validator validator, ApplicationEventPublisher eventPublisher) {
         this.responseRepository = responseRepository;
         this.validator = validator;
+        this.eventPublisher = eventPublisher;
     }
 
     @Override
@@ -37,14 +43,20 @@ public class ResponseServiceImpl implements ResponseService {
     }
 
     @Override
+    public List<Response> getResponsesByStudentAndQuiz(Student student, Quiz quiz) {
+        return responseRepository.findByStudentAndQuiz(student, quiz);
+    }
+
+    @Override
     public Response create(Response response) {
         Set<ConstraintViolation<Response>> violations = validator.validate(response);
-
         if (!violations.isEmpty()) {
             throw new ResourceValidationException(ENTITY, violations);
         }
-
-        return responseRepository.save(response);
+        Response savedResponse = responseRepository.save(response);
+        // Dispara el evento
+        eventPublisher.publishEvent(new ResponseCreatedEvent(this, savedResponse));
+        return savedResponse;
     }
 
     @Override

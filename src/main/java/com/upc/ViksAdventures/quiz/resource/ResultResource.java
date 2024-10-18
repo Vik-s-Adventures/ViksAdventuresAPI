@@ -10,6 +10,7 @@ import java.util.List;
 public class ResultResource {
     private Long id;
     private int score;
+    private Long quizId;
     private Long studentId;
 }
 

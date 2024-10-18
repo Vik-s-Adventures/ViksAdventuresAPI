@@ -9,7 +9,8 @@ import lombok.Setter;
 public class CreateResultResource {
     @NotNull
     private int score;
-
+    @NotNull
+    private Long quizId;
     @NotNull
     private Long studentId;
 }
