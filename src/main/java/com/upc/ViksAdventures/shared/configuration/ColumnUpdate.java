@@ -43,7 +43,7 @@ public class ColumnUpdate {
                 }
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Hubo un error." + e.getMessage());
         }
     }
 }
