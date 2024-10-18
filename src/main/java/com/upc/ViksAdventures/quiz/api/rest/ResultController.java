@@ -35,13 +35,6 @@ public class ResultController {
         return mapper.toResource(resultService.getBydId(id));
     }
 
-    // Crear un nuevo resultado de quiz
-    @PostMapping
-    public ResultResource createQuizResult(@RequestBody CreateResultResource resource) {
-        Result result = mapper.toModel(resource);
-        return mapper.toResource(resultService.create(result));
-    }
-
     // Eliminar un resultado de quiz
     @DeleteMapping("/{id}")
     public ResponseEntity<?> deleteQuizResult(@PathVariable Long id) {

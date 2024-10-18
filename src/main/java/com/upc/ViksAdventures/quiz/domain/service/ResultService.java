@@ -10,7 +10,6 @@ import java.util.List;
 public interface ResultService {
     List<Result> getAll();
     Result getBydId(Long quizResultId);
-    Result create(Result result);
     void updateOrCreateResult(Student student, Quiz quiz);
     ResponseEntity<?> delete(Long quizResultId);
 }

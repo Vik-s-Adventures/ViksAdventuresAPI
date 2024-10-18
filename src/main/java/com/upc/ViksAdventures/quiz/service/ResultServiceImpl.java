@@ -41,19 +41,6 @@ public class ResultServiceImpl implements ResultService {
     }
 
     @Override
-    public Result create(Result result) {
-        // Validación de restricciones
-        Set<ConstraintViolation<Result>> violations = validator.validate(result);
-
-        if (!violations.isEmpty()) {
-            throw new ResourceValidationException(ENTITY, violations);
-        }
-
-        // Realiza cualquier lógica adicional si es necesario
-        return resultRepository.save(result);
-    }
-
-    @Override
     public void updateOrCreateResult(Student student, Quiz quiz) {
         // Buscar si ya existe un resultado para este estudiante y este quiz
         Result result = resultRepository.findByStudentAndQuiz(student, quiz);
