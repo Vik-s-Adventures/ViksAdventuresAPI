@@ -8,14 +8,11 @@ import com.upc.ViksAdventures.quiz.domain.persistence.ResponseRepository;
 import com.upc.ViksAdventures.quiz.domain.persistence.ResultRepository;
 import com.upc.ViksAdventures.quiz.domain.service.ResultService;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
-import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
-import jakarta.validation.ConstraintViolation;
 import jakarta.validation.Validator;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class ResultServiceImpl implements ResultService {

@@ -1,9 +1,7 @@
 package com.upc.ViksAdventures.quiz.api.rest;
 
-import com.upc.ViksAdventures.quiz.domain.model.Result;
 import com.upc.ViksAdventures.quiz.domain.service.ResultService;
 import com.upc.ViksAdventures.quiz.mapping.ResultMapper;
-import com.upc.ViksAdventures.quiz.resource.CreateResultResource;
 import com.upc.ViksAdventures.quiz.resource.ResultResource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
