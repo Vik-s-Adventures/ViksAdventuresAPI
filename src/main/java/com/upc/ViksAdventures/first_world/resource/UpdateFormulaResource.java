@@ -14,6 +14,8 @@ public class UpdateFormulaResource {
     @Size(max = 255)
     private String expression;
 
+    private String imageUrl;
+
     @NotNull
     private Long topicId;
 }

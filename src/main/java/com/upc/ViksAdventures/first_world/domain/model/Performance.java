@@ -25,6 +25,9 @@ public class Performance {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name = "competence_id", nullable = false)
     @JsonBackReference

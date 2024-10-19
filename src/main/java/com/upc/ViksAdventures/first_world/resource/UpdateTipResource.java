@@ -14,6 +14,8 @@ public class UpdateTipResource {
     @Size(max = 255)
     private String tipText;
 
+    private String imageUrl;
+
     @NotNull
     private Long topicId;
 }

@@ -12,6 +12,7 @@ import java.util.List;
 public class PerformanceResource {
     private Long id;
     private String description;
+    private String imageUrl;
     private Long competenceId;
     private List<TopicResource> topics;
 }

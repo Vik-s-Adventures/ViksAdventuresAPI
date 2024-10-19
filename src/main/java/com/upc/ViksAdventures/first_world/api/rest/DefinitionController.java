@@ -50,6 +50,7 @@ public class DefinitionController {
         Definition definition = new Definition();
         definition.setTopic(topic);
         definition.setDescription(resource.getDescription());
+        definition.setImageUrl(resource.getImageUrl());
 
         Definition savedDefinition = definitionService.create(definition);
         return new ResponseEntity<>(mapper.toResource(savedDefinition), HttpStatus.CREATED);

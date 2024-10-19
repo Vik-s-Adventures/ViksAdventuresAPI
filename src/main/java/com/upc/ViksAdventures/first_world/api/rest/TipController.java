@@ -50,6 +50,7 @@ public class TipController {
         Tip tip = new Tip();
         tip.setTopic(topic);
         tip.setTipText(resource.getTipText());
+        tip.setImageUrl(resource.getImageUrl());
 
         Tip savedTip = tipService.create(tip);
         return new ResponseEntity<>(mapper.toResource(savedTip), HttpStatus.CREATED);

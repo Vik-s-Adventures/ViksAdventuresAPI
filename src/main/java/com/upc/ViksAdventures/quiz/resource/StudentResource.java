@@ -5,6 +5,9 @@ import com.upc.ViksAdventures.quiz.domain.model.Result;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
@@ -14,6 +17,7 @@ public class StudentResource {
     private String firstName;
     private String lastName;
     private String birthDate;
+    private int age;
     private String sex;
     private int gradeLevel;
     private String school;

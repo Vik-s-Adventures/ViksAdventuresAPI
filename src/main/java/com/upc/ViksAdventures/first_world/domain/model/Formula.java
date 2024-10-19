@@ -21,6 +21,9 @@ public class Formula {
     @Column(name = "expression", nullable = false)
     private String expression;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name = "topic_id", nullable = false)
     @JsonBackReference

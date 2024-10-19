@@ -50,7 +50,7 @@ public class FormulaController {
         Formula formula = new Formula();
         formula.setTopic(topic);
         formula.setExpression(resource.getExpression());
-
+        formula.setImageUrl(resource.getImageUrl());
         Formula savedFormula = formulaService.create(formula);
         return new ResponseEntity<>(mapper.toResource(savedFormula), HttpStatus.CREATED);
     }

@@ -21,6 +21,9 @@ public class Definition {
     @Column(name = "description", nullable = false)
     private String description;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name = "topic_id", nullable = false)
     @JsonBackReference

@@ -10,5 +10,6 @@ import lombok.*;
 public class DefinitionResource {
     private Long id;
     private String description;
+    private String imageUrl;
     private Long topicId;
 }

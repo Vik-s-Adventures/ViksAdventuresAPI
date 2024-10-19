@@ -51,6 +51,7 @@ public class PerformanceController {
         Performance performance = new Performance();
         performance.setCompetence(competence);
         performance.setDescription(resource.getDescription());
+        performance.setImageUrl(resource.getImageUrl());
 
         Performance savedPerformance = performanceService.create(performance);
         return new ResponseEntity<>(mapper.toResource(savedPerformance), HttpStatus.CREATED);

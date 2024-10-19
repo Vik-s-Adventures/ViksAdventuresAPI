@@ -14,6 +14,8 @@ public class UpdatePerformanceResource {
     @Size(max = 255)
     private String description;
 
+    private String imageUrl;
+
     @NotNull
     private Long competenceId;
 }

@@ -10,5 +10,6 @@ import lombok.*;
 public class FormulaResource {
     private Long id;
     private String expression;
+    private String imageUrl;
     private Long topicId;
 }

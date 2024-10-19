@@ -10,5 +10,6 @@ import lombok.*;
 public class TipResource {
     private Long id;
     private String tipText;
+    private String imageUrl;
     private Long topicId;
 }

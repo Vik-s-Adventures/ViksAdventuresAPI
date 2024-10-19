@@ -21,6 +21,9 @@ public class Tip {
     @Column(name = "tip_text", nullable = false)
     private String tipText;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @ManyToOne
     @JoinColumn(name = "topic_id", nullable = false)
     @JsonBackReference

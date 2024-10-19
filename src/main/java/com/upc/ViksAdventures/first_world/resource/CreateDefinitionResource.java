@@ -14,6 +14,8 @@ public class CreateDefinitionResource {
     @Size(max = 255)
     private String description;
 
+    private String imageUrl;
+
     @NotNull
     private Long topicId;
 }
