@@ -10,6 +10,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateDefinitionResource {
+    private String title;
+
     @NotNull
     @Size(max = 255)
     private String description;

@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class DefinitionResource {
     private Long id;
+    private String title;
     private String description;
     private String imageUrl;
     private Long topicId;

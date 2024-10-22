@@ -18,6 +18,9 @@ public class Tip {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "title", nullable = false)
+    private String title;
+
     @Column(name = "tip_text", nullable = false)
     private String tipText;
 

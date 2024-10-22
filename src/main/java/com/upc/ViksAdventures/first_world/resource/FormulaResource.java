@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class FormulaResource {
     private Long id;
+    private String title;
     private String expression;
     private String imageUrl;
     private Long topicId;

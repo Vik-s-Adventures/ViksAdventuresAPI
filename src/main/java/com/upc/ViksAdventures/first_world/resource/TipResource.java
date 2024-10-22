@@ -9,6 +9,7 @@ import lombok.*;
 @AllArgsConstructor
 public class TipResource {
     private Long id;
+    private String title;
     private String tipText;
     private String imageUrl;
     private Long topicId;
