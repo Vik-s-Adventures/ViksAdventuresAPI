@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"*"})
 @RequestMapping(value = "/api/v1/options", produces = "application/json")
 public class OptionController {
     private final OptionService optionService;

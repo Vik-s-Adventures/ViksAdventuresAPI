@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"*"})
 @RequestMapping(value = "/api/v1/questions", produces = "application/json")
 public class QuestionController {
     private final QuestionService questionService;

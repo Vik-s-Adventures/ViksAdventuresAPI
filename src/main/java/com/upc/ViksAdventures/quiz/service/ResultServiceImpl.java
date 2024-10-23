@@ -56,6 +56,7 @@ public class ResultServiceImpl implements ResultService {
         // Recalcular el puntaje
         int newScore = (int) responses.stream()
                 .filter(response -> response.getOption().isCorrect())
+                //.count();
                 .count();
         result.setScore(newScore);
 

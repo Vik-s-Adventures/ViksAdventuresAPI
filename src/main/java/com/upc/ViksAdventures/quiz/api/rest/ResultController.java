@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"*"})
 @RequestMapping(value = "/api/v1/results", produces = "application/json")
 public class ResultController {
     private final ResultService resultService;

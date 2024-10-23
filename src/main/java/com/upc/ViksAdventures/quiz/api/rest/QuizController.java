@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = {"*"})
 @RequestMapping(value = "/api/v1/quizzes", produces = "application/json")
 public class QuizController {
     private final QuizService quizService;
