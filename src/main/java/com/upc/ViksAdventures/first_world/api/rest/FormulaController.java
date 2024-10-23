@@ -49,6 +49,7 @@ public class FormulaController {
 
         Formula formula = new Formula();
         formula.setTopic(topic);
+        formula.setTitle(resource.getTitle());
         formula.setExpression(resource.getExpression());
         formula.setImageUrl(resource.getImageUrl());
         Formula savedFormula = formulaService.create(formula);

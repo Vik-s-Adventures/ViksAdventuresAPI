@@ -49,6 +49,7 @@ public class TipController {
 
         Tip tip = new Tip();
         tip.setTopic(topic);
+        tip.setTitle(resource.getTitle());
         tip.setTipText(resource.getTipText());
         tip.setImageUrl(resource.getImageUrl());
 
