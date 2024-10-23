@@ -49,6 +49,7 @@ public class DefinitionController {
 
         Definition definition = new Definition();
         definition.setTopic(topic);
+        definition.setTitle(resource.getTitle());
         definition.setDescription(resource.getDescription());
         definition.setImageUrl(resource.getImageUrl());
 
