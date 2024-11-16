@@ -1,8 +1,8 @@
 package com.upc.ViksAdventures.quiz.domain.persistence;
 
+import com.upc.ViksAdventures.profile.domain.model.Student;
 import com.upc.ViksAdventures.quiz.domain.model.Quiz;
 import com.upc.ViksAdventures.quiz.domain.model.Response;
-import com.upc.ViksAdventures.quiz.domain.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;

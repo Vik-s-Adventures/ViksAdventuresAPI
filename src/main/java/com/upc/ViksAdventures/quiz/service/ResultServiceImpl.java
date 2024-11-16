@@ -1,9 +1,9 @@
 package com.upc.ViksAdventures.quiz.service;
 
+import com.upc.ViksAdventures.profile.domain.model.Student;
 import com.upc.ViksAdventures.quiz.domain.model.Quiz;
 import com.upc.ViksAdventures.quiz.domain.model.Response;
 import com.upc.ViksAdventures.quiz.domain.model.Result;
-import com.upc.ViksAdventures.quiz.domain.model.Student;
 import com.upc.ViksAdventures.quiz.domain.persistence.ResponseRepository;
 import com.upc.ViksAdventures.quiz.domain.persistence.ResultRepository;
 import com.upc.ViksAdventures.quiz.domain.service.ResultService;

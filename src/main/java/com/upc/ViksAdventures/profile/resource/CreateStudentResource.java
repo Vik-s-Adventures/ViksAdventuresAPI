@@ -1,4 +1,4 @@
-package com.upc.ViksAdventures.quiz.resource;
+package com.upc.ViksAdventures.profile.resource;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -32,5 +32,8 @@ public class CreateStudentResource {
     private String province;
 
     private String district;
+
+    @NotNull
+    private Long userId;
 
 }

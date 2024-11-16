@@ -1,5 +1,6 @@
 package com.upc.ViksAdventures.quiz.domain.model;
 
+import com.upc.ViksAdventures.profile.domain.model.Student;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

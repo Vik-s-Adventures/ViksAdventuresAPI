@@ -1,8 +1,8 @@
 package com.upc.ViksAdventures.quiz.domain.events;
 
+import com.upc.ViksAdventures.profile.domain.model.Student;
 import com.upc.ViksAdventures.quiz.domain.model.Quiz;
 import com.upc.ViksAdventures.quiz.domain.model.Response;
-import com.upc.ViksAdventures.quiz.domain.model.Student;
 import com.upc.ViksAdventures.quiz.domain.service.ResponseService;
 import com.upc.ViksAdventures.quiz.domain.service.ResultService;
 import org.springframework.context.event.EventListener;

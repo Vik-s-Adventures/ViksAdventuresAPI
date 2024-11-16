@@ -1,13 +1,11 @@
-package com.upc.ViksAdventures.quiz.resource;
+package com.upc.ViksAdventures.profile.resource;
 
 import com.upc.ViksAdventures.quiz.domain.model.Response;
 import com.upc.ViksAdventures.quiz.domain.model.Result;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Getter
@@ -24,6 +22,7 @@ public class StudentResource {
     private String department;
     private String province;
     private String district;
+    private Long userId;
     private List<Response> responses;
     private List<Result> results;
 }

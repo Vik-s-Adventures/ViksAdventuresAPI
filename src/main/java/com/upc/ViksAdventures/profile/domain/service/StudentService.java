@@ -1,6 +1,6 @@
-package com.upc.ViksAdventures.quiz.domain.service;
+package com.upc.ViksAdventures.profile.domain.service;
 
-import com.upc.ViksAdventures.quiz.domain.model.Student;
+import com.upc.ViksAdventures.profile.domain.model.Student;
 import org.springframework.http.ResponseEntity;
 
 import java.util.List;

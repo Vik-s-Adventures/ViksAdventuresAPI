@@ -1,15 +1,14 @@
 package com.upc.ViksAdventures.quiz.api.rest;
 
+import com.upc.ViksAdventures.profile.domain.model.Student;
+import com.upc.ViksAdventures.profile.domain.service.StudentService;
 import com.upc.ViksAdventures.quiz.domain.model.Option;
 import com.upc.ViksAdventures.quiz.domain.model.Response;
-import com.upc.ViksAdventures.quiz.domain.model.Student;
 import com.upc.ViksAdventures.quiz.domain.service.OptionService;
 import com.upc.ViksAdventures.quiz.domain.service.ResponseService;
-import com.upc.ViksAdventures.quiz.domain.service.StudentService;
 import com.upc.ViksAdventures.quiz.mapping.ResponseMapper;
 import com.upc.ViksAdventures.quiz.resource.CreateResponseResource;
 import com.upc.ViksAdventures.quiz.resource.ResponseResource;
-import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

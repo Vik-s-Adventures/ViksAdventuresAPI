@@ -1,12 +1,12 @@
 package com.upc.ViksAdventures.quiz.api.internal;
 
-import com.upc.ViksAdventures.quiz.domain.model.Student;
+import com.upc.ViksAdventures.profile.domain.model.Student;
+import com.upc.ViksAdventures.profile.domain.service.StudentService;
+import com.upc.ViksAdventures.profile.mapping.StudentMapper;
 import com.upc.ViksAdventures.quiz.domain.model.Response;
 import com.upc.ViksAdventures.quiz.domain.model.Quiz;
-import com.upc.ViksAdventures.quiz.domain.service.StudentService;
 import com.upc.ViksAdventures.quiz.domain.service.ResponseService;
 import com.upc.ViksAdventures.quiz.domain.service.QuizService;
-import com.upc.ViksAdventures.quiz.mapping.StudentMapper;
 import com.upc.ViksAdventures.quiz.service.PredictionServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -27,11 +27,6 @@ public class QuizMappingConfiguration {
     }
 
     @Bean
-    public StudentMapper studentMapper() {
-        return new StudentMapper();
-    }
-
-    @Bean
     public ResponseMapper responseMapper() {
         return new ResponseMapper();
     }

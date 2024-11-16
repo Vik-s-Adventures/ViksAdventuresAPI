@@ -1,9 +1,9 @@
-package com.upc.ViksAdventures.quiz.mapping;
+package com.upc.ViksAdventures.profile.mapping;
 
-import com.upc.ViksAdventures.quiz.domain.model.Student;
-import com.upc.ViksAdventures.quiz.resource.CreateStudentResource;
-import com.upc.ViksAdventures.quiz.resource.StudentResource;
-import com.upc.ViksAdventures.quiz.resource.UpdateStudentResource;
+import com.upc.ViksAdventures.profile.resource.CreateStudentResource;
+import com.upc.ViksAdventures.profile.resource.StudentResource;
+import com.upc.ViksAdventures.profile.resource.UpdateStudentResource;
+import com.upc.ViksAdventures.profile.domain.model.Student;
 import com.upc.ViksAdventures.shared.mapping.EnhancedModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

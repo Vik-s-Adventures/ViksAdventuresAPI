@@ -1,6 +1,11 @@
-package com.upc.ViksAdventures.quiz.domain.model;
+package com.upc.ViksAdventures.profile.domain.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.upc.ViksAdventures.first_world.domain.model.Competence;
+import com.upc.ViksAdventures.iam.domain.model.User;
+import com.upc.ViksAdventures.quiz.domain.model.Response;
+import com.upc.ViksAdventures.quiz.domain.model.Result;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -47,6 +52,11 @@ public class Student {
 
     @Column(name="district")
     private String district;
+
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonBackReference
+    private User user;
 
     @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     @JsonManagedReference

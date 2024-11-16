@@ -1,8 +1,8 @@
-package com.upc.ViksAdventures.quiz.service;
+package com.upc.ViksAdventures.profile.service;
 
-import com.upc.ViksAdventures.quiz.domain.model.Student;
-import com.upc.ViksAdventures.quiz.domain.persistence.StudentRepository;
-import com.upc.ViksAdventures.quiz.domain.service.StudentService;
+import com.upc.ViksAdventures.profile.domain.model.Student;
+import com.upc.ViksAdventures.profile.domain.persistence.StudentRepository;
+import com.upc.ViksAdventures.profile.domain.service.StudentService;
 import com.upc.ViksAdventures.shared.exception.ResourceNotFoundException;
 import com.upc.ViksAdventures.shared.exception.ResourceValidationException;
 import jakarta.validation.ConstraintViolation;
